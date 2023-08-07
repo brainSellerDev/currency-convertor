@@ -1,16 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Currency convertor</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <div class="app">
-      <h1>Currency-convertor</h1>
-    </div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Currency convertor</title>
+	</head>
+	<body>
+		<div class="app">
+			<header class="header">
+				<h1 class="header__title">Currency Converter</h1>
+				<p class="header__description">
+					Need to make an international business payment? Take a look at our
+					foreign exchange rates.
+				</p>
+			</header>
+			<main class="convertor">
+				<h2 class="convertor__title">
+					Make fast and affordable international business payments
+				</h2>
+				<p class="convertor__description">
+					Send secure international business payments in
+					<span class="convertor__description_selected">XX</span> currencies,
+					all at competitive rates with no hidden fees.
+				</p>
+				<div class="currencies">
+					<div class="currencies-value">
+						<div class="currencies-value__field">
+							<label>Amount </label>
+							<input type="text" id="name" placeholder="0.00" />
+						</div>
+						<select class="currencies-list" name="currencies">
+							<option value="USD">USD</option>
+							<option value="EUR">EUR</option>
+							<option value="TJS">TJS</option>
+							<option value="CNY">CNY</option>
+							<option value="RUB">RUB</option>
+						</select>
+					</div>
+					<div class="swap-left-right"></div>
+					<div class="swap-top-down"></div>
+					<div class="currencies-value">
+						<div class="currencies-value__field">
+							<label>Converted to </label>
+							<input type="text" id="name" placeholder="0.00" />
+						</div>
+						<select class="currencies-list" name="currencies">
+							<option value="USD">USD</option>
+							<option selected value="EUR">EUR</option>
+							<option value="TJS">TJS</option>
+							<option value="CNY">CNY</option>
+							<option value="RUB">RUB</option>
+						</select>
+					</div>
+				</div>
+				<button class="convertor__button">Convert</button>
+			</main>
+		</div>
+		<script type="module" src="/src/scripts/main.ts"></script>
+	</body>
 </html>
