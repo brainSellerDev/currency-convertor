@@ -2,23 +2,21 @@ import '../stylesheet/reset.scss'
 import '../stylesheet/index.scss'
 import { currencyTypes } from './currencies'
 
-let currentCurrencyAmountField: HTMLInputElement = document.querySelector(
+let currentCurrencyAmountField = document.querySelector(
 	'.currencies-value-field__amount'
 ) as HTMLInputElement
 
-let convertedCurrencyAmountField: HTMLInputElement = document.querySelector(
+let convertedCurrencyAmountField = document.querySelector(
 	'.currencies-value-field__converted'
 ) as HTMLInputElement
 
-let currentCurrencyType: HTMLSelectElement = document.querySelector(
-	'.amount'
-) as HTMLSelectElement
+let currentCurrencyType = document.querySelector('.amount') as HTMLSelectElement
 
-let convertedCurrencyType: HTMLSelectElement = document.querySelector(
+let convertedCurrencyType = document.querySelector(
 	'.converted'
 ) as HTMLSelectElement
 
-let swapBtn: HTMLElement = document.querySelector('.swap-btn') as HTMLElement
+let swapBtn = document.querySelector('.swap-btn') as HTMLElement
 
 let currencyType: string = currentCurrencyType.value
 let convertedType: string = convertedCurrencyType.value
@@ -61,7 +59,9 @@ function convertToCurrency(
 	convertedValue: string
 ): void {
 	for (const [key, value] of Object.entries(currencyTypes)) {
-		if (convertedType === key) {
+		if (currencyType === convertedType) {
+			convertedValue = currentValue
+		} else if (convertedType === key) {
 			convertedValue = String(
 				(Number(currentValue) * Number(value[currentType])).toFixed(2)
 			)
@@ -69,4 +69,3 @@ function convertToCurrency(
 	}
 	convertedCurrencyAmountField.value = convertedValue
 }
-
