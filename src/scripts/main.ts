@@ -1,56 +1,90 @@
 import '../stylesheet/reset.scss'
 import '../stylesheet/index.scss'
-import { currencyTypes } from './currencies'
+import { currencyTypes, currenciesTypesEnum } from './currencies'
 
-let currentCurrencyAmountField = document.querySelector(
-	'.currencies-value-field__amount'
-) as HTMLInputElement
-
-let convertedCurrencyAmountField = document.querySelector(
-	'.currencies-value-field__converted'
-) as HTMLInputElement
-
-let currentCurrencyType = document.querySelector('.amount') as HTMLSelectElement
-
-let convertedCurrencyType = document.querySelector(
-	'.converted'
-) as HTMLSelectElement
-
-let swapBtn = document.querySelector('.swap-btn') as HTMLElement
-
-let currencyType: string = currentCurrencyType.value
-let convertedType: string = convertedCurrencyType.value
+let currentCurrencyAmountField: HTMLInputElement
+let convertedCurrencyAmountField: HTMLInputElement
+let currentCurrencyType: HTMLSelectElement
+let convertedCurrencyType: HTMLSelectElement
+let swapBtn: HTMLElement
+let currencyType: currenciesTypesEnum = currenciesTypesEnum.USD
+let convertedType: currenciesTypesEnum = currenciesTypesEnum.RUB
 let currentAmount: string = ''
 let convertedAmount: string = ''
 
-currentCurrencyAmountField.addEventListener('input', (e: Event): void => {
-	const target = e.target as HTMLInputElement
-	currentAmount = target.value
-	convertToCurrency(currencyType, convertedType, currentAmount, convertedAmount)
-})
-convertedCurrencyAmountField.addEventListener('input', (e: Event): void => {
-	const target = e.target as HTMLInputElement
-	convertedAmount = target.value
-	convertToCurrency(currencyType, convertedType, currentAmount, convertedAmount)
-})
-currentCurrencyType.addEventListener('change', (e: Event): void => {
-	const target = e.target as HTMLSelectElement
-	currencyType = target.value
-	convertToCurrency(currencyType, convertedType, currentAmount, convertedAmount)
-})
-convertedCurrencyType.addEventListener('change', (e: Event): void => {
-	const target = e.target as HTMLSelectElement
-	convertedType = target.value
-	convertToCurrency(currencyType, convertedType, currentAmount, convertedAmount)
-})
+function initElements(): void {
+	currentCurrencyAmountField = document.querySelector(
+		'.currencies-value-field__amount'
+	) as HTMLInputElement
 
-swapBtn.addEventListener('click', (): void => {
-	currentCurrencyType.value = convertedType
-	convertedCurrencyType.value = currencyType
-	currencyType = currentCurrencyType.value
-	convertedType = convertedCurrencyType.value
-	convertToCurrency(currencyType, convertedType, currentAmount, convertedAmount)
-})
+	convertedCurrencyAmountField = document.querySelector(
+		'.currencies-value-field__converted'
+	) as HTMLInputElement
+
+	currentCurrencyType = document.querySelector('.amount') as HTMLSelectElement
+
+	convertedCurrencyType = document.querySelector(
+		'.converted'
+	) as HTMLSelectElement
+
+	swapBtn = document.querySelector('.swap-btn') as HTMLElement
+}
+
+function initHandleClicks(): void {
+	currentCurrencyAmountField.addEventListener('input', (e: Event): void => {
+		const target = e.target as HTMLInputElement
+		currentAmount = target.value
+		convertToCurrency(
+			currencyType,
+			convertedType,
+			currentAmount,
+			convertedAmount
+		)
+	})
+	convertedCurrencyAmountField.addEventListener('input', (e: Event): void => {
+		const target = e.target as HTMLInputElement
+		convertedAmount = target.value
+		convertToCurrency(
+			currencyType,
+			convertedType,
+			currentAmount,
+			convertedAmount
+		)
+	})
+	currentCurrencyType.addEventListener('change', (e: Event): void => {
+		const target = e.target as HTMLSelectElement
+		currencyType = target.value as currenciesTypesEnum
+		convertToCurrency(
+			currencyType,
+			convertedType,
+			currentAmount,
+			convertedAmount
+		)
+	})
+	convertedCurrencyType.addEventListener('change', (e: Event): void => {
+		const target = e.target as HTMLSelectElement
+		convertedType = target.value as currenciesTypesEnum
+		convertToCurrency(
+			currencyType,
+			convertedType,
+			currentAmount,
+			convertedAmount
+		)
+	})
+
+	swapBtn.addEventListener('click', (): void => {
+		currentCurrencyType.value = convertedType
+		convertedCurrencyType.value = currencyType
+		currencyType = currentCurrencyType.value as currenciesTypesEnum
+		convertedType = convertedCurrencyType.value as currenciesTypesEnum
+		convertToCurrency(
+			currencyType,
+			convertedType,
+			currentAmount,
+			convertedAmount
+		)
+	})
+}
 
 function convertToCurrency(
 	currentType: string,
@@ -63,9 +97,18 @@ function convertToCurrency(
 			convertedValue = currentValue
 		} else if (convertedType === key) {
 			convertedValue = String(
-				(Number(currentValue) * Number(value[currentType])).toFixed(2)
+				(
+					Number(currentValue) *
+					Number(value[currentType as currenciesTypesEnum])
+				).toFixed(2)
 			)
 		}
 	}
 	convertedCurrencyAmountField.value = convertedValue
 }
+
+function init(): void {
+	initElements()
+	initHandleClicks()
+}
+init()

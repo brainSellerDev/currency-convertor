@@ -1,6 +1,13 @@
-interface ICurrenciesTypes {
-	[propName: string]: {
-		[propName: string]: number
+export enum currenciesTypesEnum{
+    RUB = 'RUB',
+    USD = 'USD',
+    EUR = 'EUR',
+    CNY = 'CNY',
+    TJS = 'TJS',
+}
+type ICurrenciesTypes =  {
+	[key in currenciesTypesEnum]?: {
+		[propName in currenciesTypesEnum]?: number
 	}
 }
 
