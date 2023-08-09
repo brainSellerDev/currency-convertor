@@ -87,8 +87,8 @@ function initHandleClicks(): void {
 }
 
 function convertToCurrency(
-	currentType: string,
-	convertedType: string,
+	currentType: currenciesTypesEnum,
+	convertedType: currenciesTypesEnum,
 	currentValue: string,
 	convertedValue: string
 ): void {
@@ -99,7 +99,7 @@ function convertToCurrency(
 			convertedValue = String(
 				(
 					Number(currentValue) *
-					Number(value[currentType as currenciesTypesEnum])
+					Number(value[currentType])
 				).toFixed(2)
 			)
 		}
