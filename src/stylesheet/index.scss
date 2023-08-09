@@ -47,7 +47,7 @@
 			width: 30.25rem;
 		}
 		@media (max-width: 485px) {
-            width: 24.25rem;
+			width: 24.25rem;
 		}
 		.convertor__title {
 			width: auto;
@@ -84,14 +84,14 @@
 			}
 			.currencies-value {
 				border: 1px solid #c6c6c6;
-				padding: 0 0 0 1.25rem;
 				display: flex;
-				.currencies-value__field {
+				.currencies-value-field {
 					width: 60%;
 					display: flex;
 					flex-direction: column;
 					row-gap: 0.3125rem;
 					color: #1a1a1a;
+					padding: 0.5rem 1.25rem;
 					label {
 						margin-top: 0.625rem;
 						font-size: 1rem;
@@ -106,14 +106,23 @@
 						border: none;
 						outline: none;
 						margin-bottom: 0.375rem;
-					}
-					::placeholder {
-						color: #1a1a1a;
+						&::placeholder {
+							color: #1a1a1a;
+						}
+						&:disabled {
+							background-color: #fff;
+						}
+						&::-webkit-outer-spin-button,
+						&::-webkit-inner-spin-button {
+							-webkit-appearance: none;
+							margin: 0; 
+						}
 					}
 				}
 				.currencies-list {
 					appearance: none;
 					border: none;
+					outline: none;
 					border-left: 1px solid #c6c6c6;
 					width: 40%;
 					text-align: center;
@@ -129,46 +138,29 @@
 					}
 				}
 				select:not([multiple]) {
-					padding-right: 1.2em;
 					background-repeat: no-repeat;
-					background-position: calc(100% - 1.7em) 1.25em;
+					background-position: calc(100% - 1.5em) 1.625em;
 					background-size: 0.85em auto;
-					background-image: url('../../public/down-arrow.svg');
+					background-image: url('/down-arrow.svg');
 				}
 			}
 		}
 		.swap-left-right {
+			cursor: pointer;
 			width: 22px;
 			height: 20px;
-			background-image: url('../../public/swap-rightLeft.svg');
+			background-image: url('/swap-rightLeft.svg');
 			@media (max-width: 940px) {
 				display: none;
 			}
 		}
 		.swap-top-down {
+			cursor: pointer;
 			width: 32px;
 			height: 30px;
-			background-image: url('../../public/swap-topDown.svg');
+			background-image: url('/swap-topDown.svg');
 			@media (min-width: 940px) {
 				display: none;
-			}
-		}
-		.convertor__button {
-			cursor: pointer;
-			outline: none;
-			border: none;
-			border-radius: 0.25rem;
-			background: #e5133a;
-			color: #fff;
-			text-align: center;
-			font-family: Roboto;
-			font-size: 1rem;
-			font-style: normal;
-			font-weight: 500;
-			line-height: normal;
-			padding: 0.875rem 7.75rem;
-			@media (max-width: 940px) {
-				padding: 0.875rem 5.75rem;
 			}
 		}
 	}

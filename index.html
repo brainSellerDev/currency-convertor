@@ -26,35 +26,48 @@
 				</p>
 				<div class="currencies">
 					<div class="currencies-value">
-						<div class="currencies-value__field">
+						<div class="currencies-value-field">
 							<label>Amount </label>
-							<input type="text" id="name" placeholder="0.00" />
+							<input
+								inputmode="numeric"
+								pattern="[0-9\s]{13,19}"
+								autocomplete="cc-number"
+								maxlength="19"
+								class="currencies-value-field__amount"
+								type="number"
+								placeholder="0.00"
+							/>
 						</div>
-						<select class="currencies-list" name="currencies">
-							<option value="USD">USD</option>
+						<select class="currencies-list amount" name="currencies">
+							<option selected value="USD">USD</option>
 							<option value="EUR">EUR</option>
 							<option value="TJS">TJS</option>
 							<option value="CNY">CNY</option>
 							<option value="RUB">RUB</option>
 						</select>
 					</div>
-					<div class="swap-left-right"></div>
-					<div class="swap-top-down"></div>
+					<div class="swap-left-right swap-btn"></div>
+					<div class="swap-top-down swap-btn"></div>
 					<div class="currencies-value">
-						<div class="currencies-value__field">
+						<div class="currencies-value-field">
 							<label>Converted to </label>
-							<input type="text" id="name" placeholder="0.00" />
+							<input
+								disabled
+								class="currencies-value-field__converted"
+								type="text"
+								id="name"
+								placeholder="0.00"
+							/>
 						</div>
-						<select class="currencies-list" name="currencies">
+						<select class="currencies-list converted" name="currencies">
 							<option value="USD">USD</option>
-							<option selected value="EUR">EUR</option>
+							<option value="EUR">EUR</option>
 							<option value="TJS">TJS</option>
 							<option value="CNY">CNY</option>
-							<option value="RUB">RUB</option>
+							<option selected value="RUB">RUB</option>
 						</select>
 					</div>
 				</div>
-				<button class="convertor__button">Convert</button>
 			</main>
 		</div>
 		<script type="module" src="/src/scripts/main.ts"></script>
